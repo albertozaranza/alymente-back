@@ -10,7 +10,10 @@ import {
   DeleteDateColumn,
   BeforeInsert,
   BeforeUpdate,
+  OneToOne,
+  JoinColumn,
 } from 'typeorm';
+import { User } from './user.entity';
 
 const HASH_SALT = 10;
 
@@ -30,16 +33,20 @@ export class Credential {
   password: string;
 
   @ApiProperty()
-  @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
+  @CreateDateColumn({ name: 'created_at', type: 'datetime' })
   createdAt: Date;
 
   @ApiProperty()
-  @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
+  @UpdateDateColumn({ name: 'updated_at', type: 'datetime' })
   updatedAt: Date;
 
   @ApiProperty()
-  @DeleteDateColumn({ name: 'deleted_at', type: 'timestamp', nullable: true })
+  @DeleteDateColumn({ name: 'deleted_at', type: 'datetime', nullable: true })
   deletedAt: Date | null;
+
+  @OneToOne(() => User, (user) => user.credential)
+  @JoinColumn({ name: 'user_id' })
+  user: User;
 
   @BeforeInsert()
   @BeforeUpdate()

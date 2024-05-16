@@ -6,7 +6,11 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
+  OneToOne,
+  OneToMany,
 } from 'typeorm';
+import { Address } from './adress.entity';
+import { Credential } from './credential.entity';
 
 @Entity()
 export class User {
@@ -75,14 +79,20 @@ export class User {
   color: string;
 
   @ApiProperty()
-  @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
+  @CreateDateColumn({ name: 'created_at', type: 'datetime' })
   createdAt: Date;
 
   @ApiProperty()
-  @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
+  @UpdateDateColumn({ name: 'updated_at', type: 'datetime' })
   updatedAt: Date;
 
   @ApiProperty()
-  @DeleteDateColumn({ name: 'deleted_at', type: 'timestamp', nullable: true })
+  @DeleteDateColumn({ name: 'deleted_at', type: 'datetime', nullable: true })
   deletedAt: Date | null;
+
+  @OneToOne(() => Credential, (credential) => credential.user)
+  credential: Credential;
+
+  @OneToMany(() => Address, (address) => address.user)
+  addresses: Address[];
 }
