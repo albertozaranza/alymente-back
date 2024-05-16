@@ -5,7 +5,6 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
 
   app.setGlobalPrefix('api/v1');
 
@@ -14,7 +13,7 @@ async function bootstrap() {
     .setDescription('')
     .setVersion('1.0.0')
     .addBearerAuth()
-    .addServer('http://localhost')
+    .addServer('http://localhost:3000/')
     .build();
 
   const options = {
@@ -23,5 +22,7 @@ async function bootstrap() {
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/v1/docs', app, document, options);
+
+  await app.listen(3000);
 }
 bootstrap();

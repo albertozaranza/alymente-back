@@ -9,11 +9,7 @@ export const dataSource = new DataSource({
   synchronize: true,
   logging: ['error'],
   entities: [
-    join(
-      './src/shared/modules/database',
-      'entities/integration',
-      '*.entity.{ts,js}',
-    ),
+    join('./src/shared/modules/database', 'entities/', '*.entity.{ts,js}'),
   ],
   migrations: [join(__dirname, 'migrations', '*{.ts,.js}')],
 });

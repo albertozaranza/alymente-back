@@ -19,7 +19,7 @@ export class Address {
 
   @ApiProperty()
   @Column()
-  cep: string;
+  zipCode: string;
 
   @ApiProperty()
   @Column()

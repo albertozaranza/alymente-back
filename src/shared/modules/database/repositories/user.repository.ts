@@ -9,7 +9,17 @@ export class UserRepository {
     this.repository = datasource.getRepository(User);
   }
 
+  async list(): Promise<User[]> {
+    return this.repository.find();
+  }
+
   async findOneById(id: string): Promise<User> {
-    return await this.repository.findOneBy({ id });
+    return this.repository.findOneBy({ id });
+  }
+
+  async create(user: Partial<User>): Promise<User> {
+    const newUser = this.repository.create(user);
+
+    return await this.repository.save(newUser);
   }
 }

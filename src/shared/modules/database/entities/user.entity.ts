@@ -9,7 +9,8 @@ import {
   OneToOne,
   OneToMany,
 } from 'typeorm';
-import { Address } from './adress.entity';
+
+import { Address } from './address.entity';
 import { Credential } from './credential.entity';
 
 @Entity()
