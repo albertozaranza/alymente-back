@@ -9,70 +9,34 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class User {
+export class Address {
   @ApiProperty()
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @ApiProperty()
   @Column()
-  name: string;
+  cep: string;
 
   @ApiProperty()
   @Column()
-  age: number;
+  address: string;
 
   @ApiProperty()
   @Column()
-  cpf: string;
+  number: string;
 
   @ApiProperty()
   @Column()
-  rg: string;
-
-  @ApiProperty()
-  @Column({ name: 'birth_date' })
-  birthDate: Date;
+  neighborhood: string;
 
   @ApiProperty()
   @Column()
-  gender: string;
+  city: string;
 
   @ApiProperty()
   @Column()
-  sign: string;
-
-  @ApiProperty()
-  @Column()
-  mother: string;
-
-  @ApiProperty()
-  @Column()
-  father: string;
-
-  @ApiProperty()
-  @Column()
-  landline: string;
-
-  @ApiProperty()
-  @Column()
-  phone: string;
-
-  @ApiProperty()
-  @Column()
-  height: number;
-
-  @ApiProperty()
-  @Column()
-  weight: number;
-
-  @ApiProperty()
-  @Column({ name: 'blood_type' })
-  bloodType: string;
-
-  @ApiProperty()
-  @Column()
-  color: string;
+  state: string;
 
   @ApiProperty()
   @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
