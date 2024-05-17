@@ -18,7 +18,7 @@ export class Address {
   id: string;
 
   @ApiProperty()
-  @Column()
+  @Column({ name: 'zip_code' })
   zipCode: string;
 
   @ApiProperty()

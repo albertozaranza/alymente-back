@@ -22,4 +22,12 @@ export class UserRepository {
 
     return await this.repository.save(newUser);
   }
+
+  async remove(id: string) {
+    return this.repository.delete({ id });
+  }
+
+  async update(id: string, user: Partial<User>) {
+    return this.repository.update(id, user);
+  }
 }
